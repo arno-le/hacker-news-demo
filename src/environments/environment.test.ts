@@ -1,4 +1,4 @@
 export const environment = {
-  production: true,
+  production: false,
   apiBaseurl: "https://hacker-news.firebaseio.com/v0/"
 };
