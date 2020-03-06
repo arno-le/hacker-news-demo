@@ -2,6 +2,10 @@
 
 Demonstrating an Angular app running fully on Observables, complete with tests.
 
+#### Caveats
+- Because of the underlying api, there's a certain amount of pop in and flicker with initial loading of the list
+- The sort order is not always deterministic between two .next() calls
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.1.
 
 ## Development server
