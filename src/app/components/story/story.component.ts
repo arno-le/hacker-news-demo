@@ -2,10 +2,10 @@ import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-card',
-  templateUrl: './news-item.component.html',
-  styleUrls: ['./news-item.component.scss']
+  templateUrl: './story.component.html',
+  styleUrls: ['./story.component.scss']
 })
-export class NewsItemComponent {
+export class StoryComponent {
   @Input() href = '';
   @Input() title = '';
   @Input() score = 0;

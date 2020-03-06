@@ -17,14 +17,14 @@ export class HackerNewsService {
     this.apiBaseUrl = environment.apiBaseurl;
   }
 
-  getNews(mode: 'top' | 'new') {
+  getStories(mode: 'top' | 'new') {
     this.stories.next([]);
     this.httpClient
       .get<number[]>(this.apiBaseUrl + mode + 'stories.json')
-      .subscribe(data => this.getStories(data));
+      .subscribe(data => this.getStoriesFromApi(data));
   }
 
-  private getStories(ids: number[]) {
+  private getStoriesFromApi(ids: number[]) {
     ids.map(id => {
       if (this.storyCache[id]) {
         this.pushNewStory(this.storyCache[id]);

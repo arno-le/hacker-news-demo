@@ -32,7 +32,7 @@ describe('HackerNewsService', () => {
   describe('- getNews', () => {
     it('should have a NewsItem[] in stories after fetching them ', () => {
       // Call the method
-      service.getNews('new');
+      service.getStories('new');
 
       // Setup Http mocks returning dummy items
       const dummyNews = [

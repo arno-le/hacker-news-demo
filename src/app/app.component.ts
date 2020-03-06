@@ -9,7 +9,7 @@ import { Story } from './models';
 })
 export class AppComponent implements OnInit {
   private originalStories: Story[] = [];
-  news: Story[] = [];
+  stories: Story[] = [];
   loading = true;
   mode: 'new' | 'top' = 'new';
   sort: 'asc' | 'desc' = 'desc';
@@ -18,18 +18,18 @@ export class AppComponent implements OnInit {
   constructor(private hackerService: HackerNewsService) {}
 
   ngOnInit() {
-    this.getInitialNews();
+    this.getInitialStories();
   }
 
-  private getInitialNews() {
-    this.hackerService.getNews('new');
+  private getInitialStories() {
+    this.hackerService.getStories('new');
     this.hackerService.stories.subscribe(stories => {
-      this.news = stories;
+      this.stories = stories;
       this.originalStories = stories;
       if (this.searchTerm.length > 0) {
-        this.filterNews(stories);
+        this.filterStories(stories);
       } else {
-        this.news = stories;
+        this.stories = stories;
       }
       this.loading = stories.length < 1;
     });
@@ -37,12 +37,12 @@ export class AppComponent implements OnInit {
 
   updateSearch(text: string) {
     this.searchTerm = text.replace(/ /g, '').toLowerCase();
-    this.filterNews();
+    this.filterStories();
   }
 
-  private filterNews(news?: Story[]) {
-    const arr = news || this.originalStories;
-    this.news =
+  private filterStories(stories?: Story[]) {
+    const arr = stories || this.originalStories;
+    this.stories =
       this.searchTerm.length > 0
         ? arr.filter(item =>
             item.title
@@ -56,7 +56,7 @@ export class AppComponent implements OnInit {
   changeMode(mode: 'new' | 'top') {
     if (mode !== this.mode) {
       this.mode = mode;
-      this.hackerService.getNews(mode);
+      this.hackerService.getStories(mode);
     }
   }
 

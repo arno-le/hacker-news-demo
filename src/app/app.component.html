@@ -48,10 +48,10 @@
     </div>
   </div>
 
-  <h2 *ngIf="loading; else newsCard">Loading...</h2>
-  <ng-template #newsCard>
+  <h2 *ngIf="loading; else storyCard">Loading...</h2>
+  <ng-template #storyCard>
     <app-card
-      *ngFor="let story of news; index as i; trackBy: trackByStoryId"
+      *ngFor="let story of stories; index as i; trackBy: trackByStoryId"
       [href]="story.url"
       [title]="story.title"
       [score]="story.score"

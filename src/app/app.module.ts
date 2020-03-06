@@ -5,10 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HackerNewsService } from './services/hacker-news.service';
 import { HttpClientModule } from '@angular/common/http';
-import { NewsItemComponent } from './components/news-item/news-item.component';
+import { StoryComponent } from './components/story/story.component';
 
 @NgModule({
-  declarations: [AppComponent, NewsItemComponent],
+  declarations: [AppComponent, StoryComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [HackerNewsService],
   bootstrap: [AppComponent]
