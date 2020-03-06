@@ -7,7 +7,7 @@
   color: white;
   font-weight: 600;
   img {
-    margin: 0 16px;
+    margin: 0 1.5em;
   }
 }
 
@@ -18,6 +18,15 @@
   max-width: 960px;
   flex-direction: column;
   align-items: stretch;
+
+  .search-input {
+    border-radius: 9px;
+    border: 2px solid #ddd;
+    padding: 12px;
+    font-size: 1.2rem;
+    outline: none;
+    margin: 1em 0 1.5em;
+  }
 
   .button-row {
     display: flex;
