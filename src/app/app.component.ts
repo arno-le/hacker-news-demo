@@ -8,6 +8,7 @@ import { Story } from './models';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+  private originalStories: Story[] = [];
   news: Story[] = [];
   loading = true;
   mode: 'new' | 'top' = 'new';
@@ -24,6 +25,7 @@ export class AppComponent implements OnInit {
     this.hackerService.getNews('new');
     this.hackerService.stories.subscribe(stories => {
       this.news = stories;
+      this.originalStories = stories;
       if (this.searchTerm.length > 0) {
         this.filterNews(stories);
       } else {
@@ -39,13 +41,16 @@ export class AppComponent implements OnInit {
   }
 
   private filterNews(news?: Story[]) {
-    const arr = news || this.news;
-    this.news = arr.filter(item =>
-      item.title
-        .replace(/ /g, '')
-        .toLowerCase()
-        .includes(this.searchTerm)
-    );
+    const arr = news || this.originalStories;
+    this.news =
+      this.searchTerm.length > 0
+        ? arr.filter(item =>
+            item.title
+              .replace(/ /g, '')
+              .toLowerCase()
+              .includes(this.searchTerm)
+          )
+        : this.originalStories;
   }
 
   changeMode(mode: 'new' | 'top') {

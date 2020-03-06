@@ -10,6 +10,7 @@ import { Story } from '../models';
 export class HackerNewsService {
   apiBaseUrl: string;
   stories: BehaviorSubject<Story[]> = new BehaviorSubject([]);
+  storyCache: { [key: number]: Story } = {};
   sortOrder: 'asc' | 'desc' = 'desc';
 
   constructor(private httpClient: HttpClient) {
@@ -24,14 +25,19 @@ export class HackerNewsService {
   }
 
   private getStories(ids: number[]) {
-    ids.map(id =>
-      this.httpClient
-        .get<Story>(this.apiBaseUrl + 'item/' + id + '.json')
-        .subscribe(newsItem => this.pushNewStory(newsItem))
-    );
+    ids.map(id => {
+      if (this.storyCache[id]) {
+        this.pushNewStory(this.storyCache[id]);
+      } else {
+        this.httpClient
+          .get<Story>(this.apiBaseUrl + 'item/' + id + '.json')
+          .subscribe(newsItem => this.pushNewStory(newsItem));
+      }
+    });
   }
 
   private pushNewStory(newStory: Story) {
+    this.storyCache[newStory.id] = newStory;
     const oldItems = this.stories.getValue();
     const newItems = [...oldItems, newStory];
     this.sort(newItems);
