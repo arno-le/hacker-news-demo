@@ -35,6 +35,7 @@ export class AppComponent implements OnInit {
 
   updateSearch(text: string) {
     this.searchTerm = text.replace(/ /g, '').toLowerCase();
+    this.filterNews();
   }
 
   private filterNews(news?: Story[]) {

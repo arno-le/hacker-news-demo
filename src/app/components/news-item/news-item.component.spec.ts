@@ -38,7 +38,7 @@ describe('CardComponent', () => {
     );
     expect(
       fixture.nativeElement.querySelector(
-        'div > div.score > small:nth-child(2)'
+        'div > div.score > p:nth-child(1)'
       ).innerText
     ).toEqual('123');
   });

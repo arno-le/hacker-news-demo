@@ -41,6 +41,7 @@ describe('HackerNewsService', () => {
           descendants: 0,
           id: 22212336,
           score: 321,
+          kids: [],
           time: 1581402233,
           title: 'Lorem ipsum',
           type: 'story',
@@ -50,13 +51,13 @@ describe('HackerNewsService', () => {
 
       // All items
       const allReq = httpMock.expectOne(
-        `${service.apiBaseUrl}newstories.json?print=pretty`
+        `${service.apiBaseUrl}newstories.json`
       );
       expect(allReq.request.method).toBe('GET');
       allReq.flush([dummyNews[0].id]);
       // Single
       const singleItemReq = httpMock.expectOne(
-        `${service.apiBaseUrl}item/${dummyNews[0].id}.json?print=pretty`
+        `${service.apiBaseUrl}item/${dummyNews[0].id}.json`
       );
       expect(singleItemReq.request.method).toBe('GET');
       singleItemReq.flush(dummyNews[0]);
