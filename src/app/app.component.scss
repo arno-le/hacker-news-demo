@@ -19,23 +19,27 @@
   flex-direction: column;
   align-items: stretch;
 
-  .button-wrapper {
-    margin: 16px 0;
+  .button-row {
+    display: flex;
+    justify-content: space-between;
+    .button-wrapper {
+      margin: 16px 0;
 
-    button {
-      padding: 8px 24px;
-      font-size: 16px;
-      text-transform: uppercase;
-      font-family: 'system-ui';
-      border: none;
-      border-bottom: #e0f0ff solid 4px;
-      cursor: pointer;
-      transition: border-bottom 0.4s ease-out;
-      &.active {
-        border-bottom: #1976d2 solid 4px;
-      }
-      &:focus {
-        outline: none;
+      button {
+        padding: 8px 24px;
+        font-size: 16px;
+        text-transform: uppercase;
+        font-family: 'system-ui';
+        border: none;
+        border-bottom: #e0f0ff solid 4px;
+        cursor: pointer;
+        transition: border-bottom 0.4s ease-out;
+        &.active {
+          border-bottom: #1976d2 solid 4px;
+        }
+        &:focus {
+          outline: none;
+        }
       }
     }
   }

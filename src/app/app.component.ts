@@ -10,6 +10,7 @@ export class AppComponent implements OnInit {
   news = [];
   loading = true;
   mode: 'new' | 'top' = 'new';
+  sort: 'asc' | 'desc' = 'desc';
 
   constructor(private hackerService: HackerNewsService) {}
 
@@ -25,10 +26,21 @@ export class AppComponent implements OnInit {
     });
   }
 
-  public async changeMode(mode: 'new' | 'top') {
+  changeMode(mode: 'new' | 'top') {
     if (mode !== this.mode) {
       this.mode = mode;
-      this.hackerService.getNews('new');
+      this.hackerService.getNews(mode);
     }
+  }
+
+  changeSort(sort: 'asc' | 'desc') {
+    if (sort !== this.sort) {
+      this.sort = sort;
+      this.hackerService.changeSortOrder(sort);
+    }
+  }
+
+  trackByStoryId(index, story) {
+    return story ? story.id : index;
   }
 }

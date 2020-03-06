@@ -8,18 +8,41 @@
 </div>
 
 <div class="content" role="main">
-  <div class="button-wrapper">
-    <button [ngClass]="{ active: mode === 'new' }" (click)="changeMode('new')">
-      New
-    </button>
-    <button [ngClass]="{ active: mode === 'top' }" (click)="changeMode('top')">
-      Top
-    </button>
+  <div class="button-row">
+    <div class="button-wrapper">
+      <button
+        [ngClass]="{ active: mode === 'new' }"
+        (click)="changeMode('new')"
+      >
+        New
+      </button>
+      <button
+        [ngClass]="{ active: mode === 'top' }"
+        (click)="changeMode('top')"
+      >
+        Top
+      </button>
+    </div>
+    <div class="button-wrapper">
+      <button
+        [ngClass]="{ active: sort === 'desc' }"
+        (click)="changeSort('desc')"
+      >
+        &#11015;
+      </button>
+      <button
+        [ngClass]="{ active: sort === 'asc' }"
+        (click)="changeSort('asc')"
+      >
+        &#11014;
+      </button>
+    </div>
   </div>
+
   <h2 *ngIf="loading; else newsCard">Loading...</h2>
   <ng-template #newsCard>
     <app-card
-      *ngFor="let story of news; index as i"
+      *ngFor="let story of news; index as i; trackBy: trackByStoryId" 
       [href]="story.url"
       [title]="story.title"
       [score]="story.score"
